@@ -119,7 +119,7 @@ function physics() {
 				ballObject[i].velX = change[0];
 				ballObject[i].velY = change[1];
 				ballObject[y].velX = change[2];
-				ballObject[y].velX = change[3];
+				ballObject[y].velY = change[3];
 
 			}
 		}
