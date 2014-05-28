@@ -98,19 +98,18 @@ function physics() {
 	}
 
 	var t = (timeNow - timeStart) / 1000;
-	//free fall of objects
+	//Acceleration
 	for (var i = 0; i < ballObject.length; i++) {
-
-		ballObject[i].velX += t * ballObject[i].accX;
-		ballObject[i].velY += t * ballObject[i].accY;
-
-		ballObject[i].posX += t * ballObject[i].velX;
-		ballObject[i].posY += t * ballObject[i].velY;
 		ballObject[i].accX = 0;
 		ballObject[i].accY = gravity;
-		ballObject[i].velX += t * ballObject[i].accX;
-		ballObject[i].velY += t * ballObject[i].accY;
+	
 
+	}
+
+	//Velocity
+	for (var i = 0; i < ballObject.length; i++) {
+		
+		
 		for (var y = 0; y < ballObject.length; y++) {
 			if (y == i)
 				continue;
@@ -124,15 +123,25 @@ function physics() {
 
 			}
 		}
-
+		
+		ballObject[i].velX += t * ballObject[i].accX;
+		ballObject[i].velY += t * ballObject[i].accY;
+	
+	}
+	
+	//Position
+	for (var i = 0; i < ballObject.length; i++) {
+		ballObject[i].posX += t * ballObject[i].velX;
+		ballObject[i].posY += t * ballObject[i].velY;
+		
 		if (ballObject[i].posY - ballObject[i].radius < 0)
 			ballObject[i].posY = ballObject[i].radius;
 		if (ballObject[i].posY - ballObject[i].radius <= 0) {
 			ballObject[i].velY = -ballObject[i].velY * elasticSolid;
 		}
-
+		
 	}
-
+	
 	draw();
 }
 
